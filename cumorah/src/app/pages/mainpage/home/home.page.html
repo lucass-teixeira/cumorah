@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar-container">
+    <ion-avatar class="profile-avatar" slot="start">
+      <img [src]="user.imgURL"/>
+    </ion-avatar>
+    <app-input (textChanged)="filterStudents($event)"  [style]="'margin: 8px'" [type]="'text'" [label]="'Search'"></app-input>
+
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-badge slot="end">4</ion-badge>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h2>mentors</h2>
+
+  <ng-container *ngIf="(loaded | async); else skeletonContainer">
+    <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
+
+      <swiper-slide *ngFor="let mentor of mentors">
+        <div class="swiper-header-container">
+          <img [src]="mentor.imgURL" />
+          <div class="swiper-header-container-title">
+            <h4>{{mentor.name}}</h4>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+  </ng-container>
+
+  <ng-template #skeletonContainer>
+    <swiper-slide *ngFor="let skeleton of mentors">
+      <ion-skeleton-text [animated]="true" style="width: 245px; height: 185px; border-radius: 10px">
+        {{skeleton}}
+      </ion-skeleton-text>
+    </swiper-slide>
+  </ng-template>
+
+  <ion-card>
+    <ion-card-header><ion-card-title>Keep learning</ion-card-title></ion-card-header>
+
+    <ion-card-content class="keep-learning-container">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://my.cumorahacademy.org/_files/categories/42_6Yzw2TUM.jpg?fit=770x200" /></ion-avatar>
+          <ion-label>Leadership</ion-label>
+        </ion-item>
+        <ion-item class="">
+          <ion-avatar slot="start">
+            <img src="https://my.cumorahacademy.org/_files/categories/43_UOXJp1M6.png?fit=770x200" /></ion-avatar>
+          Business</ion-item>
+
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://my.cumorahacademy.org/_files/categories/41_jmIiKgaO.jpg?fit=770x200" /></ion-avatar>
+          <ion-label>Soft Skills & Finding a Job</ion-label>
+        </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <app-search-container [searchText]="searchTerm"></app-search-container>
+</ion-content>

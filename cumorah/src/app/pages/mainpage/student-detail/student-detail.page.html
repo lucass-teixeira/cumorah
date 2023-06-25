@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="detail-container">
+    <div class="detail-container-header">
+
+      <ion-avatar>
+        <img [src]="student?.imgUrl" />
+      </ion-avatar>
+    </div>
+    <div class="detail-container-content">
+      <ion-card>
+        <ion-card-header>
+          <img [src]="'https://flagsapi.com/' + student?.countryCode + '/flat/32.png'" />
+
+          <ion-card-title>{{student?.nickname}}</ion-card-title>
+          <ion-card-subtitle><a href="https://www.linkedin.com/in/lucasteixeira20/">{{'https://www.linkedin.com/in/lucasteixeira20/' | linkedin}}</a></ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div>
+
+            <div class="roles-container">
+              <div class="role-card business">business</div>
+            </div>
+            <div class="hobbies-container">
+              <div class="hobbies-card first">Dance</div>
+              <div class="hobbies-card">basketball</div>
+              <div class="hobbies-card last">gym</div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

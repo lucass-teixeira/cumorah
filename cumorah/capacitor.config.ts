@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Cumorah',
+  appId: 'com.example.app',
+  appName: 'cumorah',
   webDir: 'www',
   bundledWebRuntime: false
 };

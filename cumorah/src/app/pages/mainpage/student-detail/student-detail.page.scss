@@ -1,0 +1,97 @@
+.detail-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    column-gap: 40px;
+
+    &-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+
+
+        img {
+            left: 90%;
+        }
+
+        ion-avatar {
+            transform: translateY(50%);
+            z-index: 2;
+        }
+    }
+
+    &-content {
+        ion-card {
+            img {
+                position: absolute;
+                top: 0;
+                right: 4px;
+            }
+
+            ion-card-title,
+            ion-card-subtitle {
+                display: flex;
+                justify-content: center;
+            }
+
+            ion-card-subtitle {
+                font-size: 10px;
+            }
+        }
+
+
+        background-color: #efefef;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.hobbies-container {
+    display: flex;
+
+    .hobbies-card {
+        padding: 4px;
+        border-color: #acaaaa;
+        background: #fff;
+        font-size: small;
+        border-color: #e2e2e3;
+        color: #666;
+        border: 1px solid;
+        align-items: center;
+    }
+
+    .first {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .last {
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+}
+
+.roles-container {
+    .role-card {
+        align-items: center;
+        border-radius: 5px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        height: 24px;
+        justify-content: center;
+        padding: 6px 12px;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    .business {
+        background-color: rgb(255, 235, 233);
+        color: rgb(227, 117, 104);
+    }
+}

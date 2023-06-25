@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-title>onboarding</ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <!-- <ion-toolbar>
+      <ion-title size="large">onboarding</ion-title>
+    </ion-toolbar> -->
+  </ion-header>
+
+
+  
+  <div class="onboarding-container">
+    <div class="onboarding-container-header">
+      <img src="../../../assets/logo.svg"/>
+    </div>
+
+    <div class="actions-container">
+      <app-buttons [style]="'margin-bottom: 15px'" [routerLink]="['../mainpage']" [label]="'Login'"></app-buttons>
+      <app-buttons [label]="'Sign Up'" [isSecondary]="true"></app-buttons>
+    </div>
+  </div>
+</ion-content>

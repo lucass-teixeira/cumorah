@@ -1,12 +1,23 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="toolbar-container">
-    <ion-avatar class="profile-avatar" slot="start">
-      <img [src]="user.imgURL"/>
+  <ion-toolbar>
+    <ion-avatar class="profile-avatar" style="display: none" slot="start">
+      <img [src]="user.imgURL" />
     </ion-avatar>
-    <app-input (textChanged)="filterStudents($event)"  [style]="'margin: 8px'" [type]="'text'" [label]="'Search'"></app-input>
+    <div class="toolbar-container">
+      <ion-title *ngIf="!showSearchBar">Home</ion-title>
+      <ng-container *ngIf="showSearchBar">
+        <app-input #inputComp (closeInput)="showSearchBar = false" (textChanged)="filterStudents($event)"
+          [type]="'text'" [label]="'Search'"></app-input>
+      </ng-container>
+
+
+    </div>
 
     <ion-buttons slot="primary">
-      <ion-button>
+      <ion-button *ngIf="!showSearchBar" (click)="showSearchBar = !showSearchBar">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button id="open-modal" (click)="isNotiOpen = !isNotiOpen">
         <ion-badge slot="end">4</ion-badge>
         <ion-icon name="notifications-outline"></ion-icon>
       </ion-button>
@@ -15,12 +26,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h2>mentors</h2>
+  <h5>esther</h5>
+  <swiper-container *ngIf="!_studentService.isBusy; else skeletonAvatars" [slidesPerView]="5" [loop]="false"
+    [spaceBetween]="2">
+    <swiper-slide *ngFor="let studentGroup of students" (click)="goToStudent(studentGroup)">
+      <ion-avatar><img [src]="studentGroup.imgURL" /></ion-avatar>
+    </swiper-slide>
+  </swiper-container>
 
-  <ng-container *ngIf="(loaded | async); else skeletonContainer">
+  <ng-template #skeletonAvatars>
+    <swiper-container [slidesPerView]="5" [loop]="false" [spaceBetween]="2">
+      <swiper-slide *ngFor="let studentGroup of students">
+        <ion-skeleton-text [animated]="true" style="width: 64px; height: 64px; border-radius: 50%">
+        </ion-skeleton-text>
+      </swiper-slide>
+    </swiper-container>
+  </ng-template>
+
+  <ion-card>
+    <ion-card-header><ion-card-title>Keep learning</ion-card-title></ion-card-header>
+    <ion-card-content class="keep-learning-container">
+      <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
+        <ion-avatar slot="start">
+          <img [src]="course.imgURL" />
+        </ion-avatar>
+        <ion-label>{{course.name}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <h5>mentors</h5>
+  <ng-container *ngIf="pageLoaded; else skeletonContainer">
     <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
-
-      <swiper-slide *ngFor="let mentor of mentors">
+      <swiper-slide *ngFor="let mentor of mentors" (click)="goToMentorDetail(mentor.id)">
         <div class="swiper-header-container">
           <img [src]="mentor.imgURL" />
           <div class="swiper-header-container-title">
@@ -32,35 +69,45 @@
 
   </ng-container>
 
+  <h5>house cup</h5>
+
   <ng-template #skeletonContainer>
-    <swiper-slide *ngFor="let skeleton of mentors">
-      <ion-skeleton-text [animated]="true" style="width: 245px; height: 185px; border-radius: 10px">
-        {{skeleton}}
-      </ion-skeleton-text>
-    </swiper-slide>
+    <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
+      <swiper-slide *ngFor="let skeleton of mentors">
+        <ion-skeleton-text [animated]="true" style="width: 315px; height: 210px; border-radius: 20px">
+          {{skeleton}}
+        </ion-skeleton-text>
+      </swiper-slide>
+    </swiper-container>
   </ng-template>
 
-  <ion-card>
-    <ion-card-header><ion-card-title>Keep learning</ion-card-title></ion-card-header>
+  <ion-modal [isOpen]="isNotiOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <!-- <ion-button (click)="cancel()">Cancel</ion-button> -->
+          </ion-buttons>
+          <ion-title>Notifications</ion-title>
+          <ion-buttons slot="end">
+            <ion-icon (click)="isNotiOpen = !isNotiOpen" name="close-outline"></ion-icon>
 
-    <ion-card-content class="keep-learning-container">
-        <ion-item>
-          <ion-avatar slot="start">
-            <img src="https://my.cumorahacademy.org/_files/categories/42_6Yzw2TUM.jpg?fit=770x200" /></ion-avatar>
-          <ion-label>Leadership</ion-label>
-        </ion-item>
-        <ion-item class="">
-          <ion-avatar slot="start">
-            <img src="https://my.cumorahacademy.org/_files/categories/43_UOXJp1M6.png?fit=770x200" /></ion-avatar>
-          Business</ion-item>
+            <!-- <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button> -->
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item *ngFor="let noti of notifications">
+            <ion-label slot="start">{{noti.title}}</ion-label>
+          </ion-item>
+          <!-- <ion-label position="stacked">Enter your name</ion-label> -->
+          <!-- <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input> -->
+        </ion-list>
 
-        <ion-item>
-          <ion-avatar slot="start">
-            <img src="https://my.cumorahacademy.org/_files/categories/41_jmIiKgaO.jpg?fit=770x200" /></ion-avatar>
-          <ion-label>Soft Skills & Finding a Job</ion-label>
-        </ion-item>
-    </ion-card-content>
-  </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
   <app-search-container [searchText]="searchTerm"></app-search-container>
 </ion-content>

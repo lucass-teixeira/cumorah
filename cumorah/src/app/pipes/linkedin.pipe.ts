@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LinkedinPipe implements PipeTransform {
 
-  transform(value: string, ...args: unknown[]): unknown {
-    const newValue = value.replace('https://www.linkedin.com/in/', 'linkedin/')
+  transform(value: string | undefined, ...args: unknown[]): unknown {
+    const newValue = value?.replace('https://www.linkedin.com/in/', 'linkedin/')
     return newValue;
   }
 

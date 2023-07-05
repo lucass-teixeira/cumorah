@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mainpage/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{mentor?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <img [src]="mentor?.imgURL" />
+
+      <ul>
+        <li *ngFor="let topic of mentor?.topics">{{topic}}</li>
+      </ul>
+
+</ion-content>

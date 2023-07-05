@@ -15,3 +15,27 @@
 .hide{
     display: none;
 }
+
+.no-result-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: #ffffe6;
+    
+    p{
+        padding: 6px;
+        opacity: .8;
+    }
+}
+
+.show-all-btn{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    justify-self: center;
+    background-color: #BBCDDD;
+    color: #1e1e1e;
+    margin: 0 10px;
+}

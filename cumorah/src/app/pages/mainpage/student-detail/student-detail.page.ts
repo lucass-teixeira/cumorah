@@ -15,12 +15,10 @@ export class StudentDetailPage implements OnInit {
 
   ngOnInit() {
     this.loadStudent();
-    console.log('entrou')
   }
   
   loadStudent(){
     const id: number = Number(this.router.snapshot.params['id']);
-    console.log(id)
     if(id)
     {
       this.student = this.studentService.getStudentById(id);

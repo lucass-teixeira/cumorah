@@ -1,4 +1,5 @@
 <div class="form-field"  [style]="style">
   <label [ngClass]="focused ? 'label-focused' : ''">{{label}}</label>
-  <input (input)="inputChanged($event)" [type]="type" (focus)="focused = true" (blur)="onBlur($event)"/>
+  <input [(ngModel)]="value" (input)="inputChanged($event)" [type]="type" (focus)="focused = true" (blur)="onBlur($event)"/>
+  <ion-icon slot="end" name="close-circle-outline" (click)="closeEvent()"></ion-icon>
 </div>

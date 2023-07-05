@@ -11,16 +11,16 @@ export class InputComponent  implements OnInit {
   @Input() type: string = 'text';
   @Input() style: string = '';
   @Output() textChanged: EventEmitter<string> = new EventEmitter();
+  @Output() closeInput: EventEmitter<boolean> = new EventEmitter();
 
+  value = '';
   focused: boolean = false;
-  constructor() { console.log('entrou')}
+  constructor() {}
 
   ngOnInit() {}
 
   onBlur(event: any){
-    console.log(event)
     const value = event.target.value;
-    console.log(value);
     if(!value){
       this.focused = false;
     }
@@ -28,6 +28,12 @@ export class InputComponent  implements OnInit {
 
   inputChanged(event: any){
     this.textChanged.emit(event.target.value);
+    console.log(this.value)
+  }
+
+  closeEvent(){
+    this.closeInput.emit(true);
+    console.log('passou')
   }
 
 }

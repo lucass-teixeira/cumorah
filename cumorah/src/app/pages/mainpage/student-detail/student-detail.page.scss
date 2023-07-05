@@ -42,8 +42,6 @@
             }
         }
 
-
-        background-color: #efefef;
         height: 100%;
         width: 100%;
     }
@@ -93,5 +91,13 @@
     .business {
         background-color: rgb(255, 235, 233);
         color: rgb(227, 117, 104);
+    }
+}
+
+.swiper-header-container {
+    // position: relative;
+
+    img {
+        border-radius: 20px;
     }
 }

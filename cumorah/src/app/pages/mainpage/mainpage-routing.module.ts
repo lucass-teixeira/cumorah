@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./study/study.module').then(m => m.StudyPageModule)
       },
       {
+        path: 'study/:id',
+        loadChildren: () => import('./study-detail/study-detail.module').then( m => m.StudyDetailPageModule)
+      },
+      {
         path: 'calendar',
         loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarPageModule)
       },
@@ -31,6 +35,14 @@ const routes: Routes = [
       {
         path: 'student/:id',
         loadChildren: () => import('./student-detail/student-detail-routing.module').then(m => m.StudentDetailPageRoutingModule)
+      },
+      {
+        path: 'mentor/:id',
+        loadChildren: () => import('./mentor-detail/mentor-detail-routing.module').then(m => m.MentorDetailPageRoutingModule)
+      },
+      {
+        path: 'work-time',
+        loadChildren: () => import('./work-time/work-time.module').then( m => m.WorkTimePageModule)
       },
       {
         path: '',
@@ -53,6 +65,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'mentor-detail',
+    loadChildren: () => import('./mentor-detail/mentor-detail.module').then( m => m.MentorDetailPageModule)
+  },
+  {
+    path: 'work-time',
+    loadChildren: () => import('./work-time/work-time.module').then( m => m.WorkTimePageModule)
+  },
+  {
+    path: 'study-detail',
+    loadChildren: () => import('./study-detail/study-detail.module').then( m => m.StudyDetailPageModule)
   },
 
 

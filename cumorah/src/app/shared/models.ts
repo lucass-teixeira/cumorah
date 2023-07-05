@@ -4,17 +4,40 @@ export interface Student{
     nickname: string,
     birthdate: Date,
     age: number,
-    imgUrl: string,
+    imgURL: string,
     points: number,
     idGroup: number,
     countryCode: Country,
-    GroupName?: string
-}
+    GroupName?: string,
+    linkedin?: string,
+    imgs?: Img[]
+    type: CategoryEnum
 
+}
+interface Img{
+    url: string
+}
 export interface Mentor{
+    id: number
     name: string,
     imgURL: string
+    topics?: string[]
+    type: CategoryEnum
 }
+
+export interface Notification{
+    id: number
+    title: string
+    description: string
+}
+
+export interface Course{
+    id: number
+    name: string,
+    imgURL: string
+    type: CategoryEnum
+}
+
 
 export interface User{
     name: string,

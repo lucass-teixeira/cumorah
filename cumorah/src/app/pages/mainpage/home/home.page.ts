@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { BehaviorSubject, Observable, delay, of, tap } from 'rxjs';
+import { InputComponent } from 'src/app/components/input/input.component';
 import { StudentService } from 'src/app/services/student.service';
-import { Mentor, User } from 'src/app/shared/models';
+import { Group } from 'src/app/shared/enums';
+import { Course, Mentor, Notification, Student, User } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-home',
@@ -10,27 +13,68 @@ import { Mentor, User } from 'src/app/shared/models';
 })
 export class HomePage implements OnInit {
 
-  mentors: Mentor[] = []
+  inputComp: InputComponent | undefined
+  @ViewChild('inputComp') set input(input: InputComponent){
+    this.inputComp = input;
+    console.log('input', this.inputComp)
+  }; 
+  mentors: Mentor[] = [];
+  notifications: Notification[] = []
   searchTerm: string = '';
   user: User = {name: 'Lucas Teixeira', imgURL: 'https://user-images.githubusercontent.com/54940494/238946413-256ce257-0b45-4994-9f18-a604db4e70c0.jpg'}
   $loadObservable: BehaviorSubject<boolean> = new BehaviorSubject(true)
   loaded: Observable<boolean> = of(false)
 
-  constructor(private _studentService: StudentService) { }
+  constructor(public _studentService: StudentService, private navController: NavController) { }
 
+
+  isNotiOpen = false;
+  groups: (Group | string)[] = [];
+  students: any[] = [];
+  courses: Course[] = [];
+  items: Student[] = [];
+  pageLoaded = false;
+  showSearchBar = false;
   ngOnInit() {
     this.getData();
+
+    setTimeout(() =>{
+      this.pageLoaded = true;
+    },1500);
+    this.loadStudents();
+    this.students = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] })).filter(x => x.GroupName === 'Esther')
+    this.groups = Object.values(Group).filter(x => isNaN(Number(x)))
+  }
+
+  loadStudents() {
+    this.items = this._studentService.getStudents();
   }
 
   public getData(){
-    this.loaded = of(false).pipe(delay(1300),tap(x => {
-      this.mentors = this._studentService.getMentors();
-      console.log('passou')
-      this.loaded = of(true)
-    }))
+    this.mentors = this._studentService.getMentors();
+    this.courses = this._studentService.getCourses();
+
+    this.notifications = this._studentService.getNotifications();
+  }
+
+
+  goToMentorDetail(id: number) {
+    this.navController.navigateForward('mainpage/mentor/' + id.toString())
   }
 
   filterStudents(value: any) {
     this.searchTerm = value;
+  }
+
+  goToCourse(course: Course){
+    this.navController.navigateForward('mainpage/study/' + course.id.toString())
+  }
+
+  goToStudent(student: Student){
+    this.navController.navigateForward('mainpage/student/' + student.id.toString())
+  }
+
+  ionViewWillLeave(){
+    this.searchTerm = '';
   }
 }

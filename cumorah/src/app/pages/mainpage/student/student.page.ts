@@ -19,7 +19,7 @@ export class StudentPage implements OnInit {
   studentsBackup: Student[] = [];
   students: any[] = [];
   constructor(public studentService: StudentService, public router: Router, public navController: NavController) {
-    this.items = this.items.sort(x => x.points);
+    // this.items = this.items.sort(x => x.points);
   }
 
   ngOnInit() {

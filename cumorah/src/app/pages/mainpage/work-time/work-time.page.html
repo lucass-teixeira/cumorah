@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>work</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-title style="text-align: center">Total: 6:00</ion-title>
+  <ion-list>
+    <ion-item *ngFor="let work of works">
+      <ion-label>{{work.description}}</ion-label>
+      <ion-label slot="end">{{work.hour}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-fab-button>+</ion-fab-button>
+</ion-content>

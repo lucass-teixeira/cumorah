@@ -4,7 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-list>
+    <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
+        <ion-avatar slot="start">
+          <img [src]="course.imgURL" />
+        </ion-avatar>
+        <ion-label>{{course.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
   <div style="display: none">
     <div class="map-container" style="display: none;">
       <!-- <div class="map"> -->
@@ -95,8 +105,8 @@
       </svg>
     </div>
 
-    <div class="ion-padding">
-      <app-input [type]="'text'" [label]="'Students'"></app-input>
+    <!-- <div class="ion-padding">
+      <app-input [type]="'text'" [label]="'Students'"></app-input> -->
 
       <!-- <ion-input placeholder="Student..."></ion-input> -->
       <!-- <ion-list>
@@ -107,7 +117,7 @@
         </ion-item>
       </ion-list> -->
 
-      <ion-list>
+      <!-- <ion-list>
         <ion-item-group *ngFor="let group of groups">
           <ion-item-divider>
               <ion-label>{{group}}</ion-label>
@@ -115,16 +125,14 @@
 
               <ng-container *ngFor="let student of students">
                 <ion-item *ngIf="group === student.GroupName">
-                  <ion-avatar slot="start"><img [src]="student.imgUrl" /></ion-avatar>
+                  <ion-avatar slot="start"><img [src]="student.imgURL" /></ion-avatar>
                   <ion-label> {{student.nickname}} </ion-label>
                   <ion-badge slot="end" color="warning">{{student.points}}</ion-badge>
                 </ion-item>
               </ng-container>
-            <!-- </ng-container> -->
-
         </ion-item-group>
-      </ion-list>
-    </div>
+      </ion-list> -->
+    <!-- </div> -->
   </div>
 
   

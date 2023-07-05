@@ -42,7 +42,7 @@
 
             <ng-container *ngFor="let student of students | filterSearch: searchTerm">
               <ion-item (click)="goToDetail(student.id)" *ngIf="group === student.GroupName">
-                <ion-avatar slot="start"><img [src]="student.imgUrl" /></ion-avatar>
+                <ion-avatar slot="start"><img [src]="student.imgURL" /></ion-avatar>
                 <ion-label> {{student.nickname}} </ion-label>
                 <ion-badge slot="end" color="warning">{{student.points}}</ion-badge>
               </ion-item>

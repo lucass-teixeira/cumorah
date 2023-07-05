@@ -8,10 +8,11 @@ import { FilterSearchPipe } from "../pipes/filter-search.pipe";
 import { SearchContainerComponent } from "./search-container/search-container.component";
 import { SearchCategoryButtonComponent } from "./search-category-button/search-category-button.component";
 import { ListFilterPipe } from "../pipes/list-filter.pipe";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
-  imports: [CommonModule, IonicModule,],
+  imports: [CommonModule, IonicModule, FormsModule],
   declarations: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe],
   exports: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe],
 })

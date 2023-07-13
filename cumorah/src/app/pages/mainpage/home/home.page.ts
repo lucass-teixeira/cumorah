@@ -21,28 +21,27 @@ export class HomePage implements OnInit {
   mentors: Mentor[] = [];
   notifications: Notification[] = []
   searchTerm: string = '';
-  user: User = {name: 'Lucas Teixeira', imgURL: 'https://user-images.githubusercontent.com/54940494/238946413-256ce257-0b45-4994-9f18-a604db4e70c0.jpg'}
+  user: User = {name: 'Lucas Teixeira', imgURL: 'https://user-images.githubusercontent.com/54940494/238946413-256ce257-0b45-4994-9f18-a604db4e70c0.jpg', groupName: 'Esther'}
   $loadObservable: BehaviorSubject<boolean> = new BehaviorSubject(true)
   loaded: Observable<boolean> = of(false)
+  estherGroup: any[] = [];
 
   constructor(public _studentService: StudentService, private navController: NavController) { }
 
 
-  isNotiOpen = false;
   groups: (Group | string)[] = [];
   students: any[] = [];
   courses: Course[] = [];
   items: Student[] = [];
-  pageLoaded = false;
   showSearchBar = false;
+  isNotiOpen = false;
+
   ngOnInit() {
     this.getData();
 
-    setTimeout(() =>{
-      this.pageLoaded = true;
-    },1500);
     this.loadStudents();
-    this.students = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] })).filter(x => x.GroupName === 'Esther')
+    this.estherGroup = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] })).filter(x => x.GroupName === this.user.groupName);
+    this.students = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] }))
     this.groups = Object.values(Group).filter(x => isNaN(Number(x)))
   }
 
@@ -74,7 +73,13 @@ export class HomePage implements OnInit {
     this.navController.navigateForward('mainpage/student/' + student.id.toString())
   }
 
+
+  goToDetail(id: number) {
+    this.navController.navigateForward('mainpage/student/' + id.toString())
+  }
+
   ionViewWillLeave(){
     this.searchTerm = '';
+    this.showSearchBar = false;
   }
 }

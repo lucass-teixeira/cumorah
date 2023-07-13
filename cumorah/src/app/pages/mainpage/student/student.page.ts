@@ -12,7 +12,7 @@ import { Student, User } from 'src/app/shared/models';
 })
 export class StudentPage implements OnInit {
 
-  user: User = {name: 'Lucas Teixeira', imgURL: 'https://user-images.githubusercontent.com/54940494/238946413-256ce257-0b45-4994-9f18-a604db4e70c0.jpg'}
+  user: User = {name: 'Lucas Teixeira', imgURL: 'https://user-images.githubusercontent.com/54940494/238946413-256ce257-0b45-4994-9f18-a604db4e70c0.jpg', groupName: 'Esther'}
   groups: (Group | string)[] = [];
   searchTerm: string = '';
   items: Student[] = [];

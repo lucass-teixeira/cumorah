@@ -1,6 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Student Area</ion-title>
+    <div class="toolbar-container">
+      <ion-title *ngIf="!showSearchBar">Student Area</ion-title>
+      <ng-container *ngIf="showSearchBar">
+        <app-input #inputComp (closeInput)="showSearchBar = false" [type]="'text'" [label]="'Search'"></app-input>
+      </ng-container>
+    </div>
+
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!showSearchBar" (click)="showSearchBar = !showSearchBar">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button id="open-modal" (click)="isNotiOpen = !isNotiOpen">
+        <ion-badge slot="end">4</ion-badge>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,10 +23,10 @@
 
   <ion-list>
     <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
-        <ion-avatar slot="start">
-          <img [src]="course.imgURL" />
-        </ion-avatar>
-        <ion-label>{{course.name}}</ion-label>
+      <ion-avatar slot="start">
+        <img [src]="course.imgURL" />
+      </ion-avatar>
+      <ion-label>{{course.name}}</ion-label>
     </ion-item>
   </ion-list>
 
@@ -108,8 +123,8 @@
     <!-- <div class="ion-padding">
       <app-input [type]="'text'" [label]="'Students'"></app-input> -->
 
-      <!-- <ion-input placeholder="Student..."></ion-input> -->
-      <!-- <ion-list>
+    <!-- <ion-input placeholder="Student..."></ion-input> -->
+    <!-- <ion-list>
         <ion-item *ngFor="let item of items">
           <ion-avatar slot="start"><img [src]="item.imgUrl" /></ion-avatar>
           <ion-label> {{item.nickname}} </ion-label>
@@ -117,7 +132,7 @@
         </ion-item>
       </ion-list> -->
 
-      <!-- <ion-list>
+    <!-- <ion-list>
         <ion-item-group *ngFor="let group of groups">
           <ion-item-divider>
               <ion-label>{{group}}</ion-label>
@@ -135,6 +150,6 @@
     <!-- </div> -->
   </div>
 
-  
+
 
 </ion-content>

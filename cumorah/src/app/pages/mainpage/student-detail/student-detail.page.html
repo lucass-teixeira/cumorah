@@ -1,7 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{student?.name}}</ion-title>
-    <img slot="end"  [src]="'https://flagsapi.com/' + student?.countryCode + '/flat/32.png'" />
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mainpage/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{student?.nickname}}</ion-title>
+    <img slot="end" style="margin-inline-end: 10px;"
+      [src]="'https://flagsapi.com/' + student?.countryCode + '/flat/32.png'" />
 
   </ion-toolbar>
 
@@ -13,30 +17,54 @@
   <div class="detail-container">
     <div class="detail-container-header">
 
-      <ion-avatar>
-        <img [src]="student?.imgURL" />
-      </ion-avatar>
+
     </div>
     <div class="detail-container-content">
       <ion-card>
         <ion-card-header>
 
+          <div class="detail-container-header">
+            <ion-avatar>
+              <img [src]="student?.imgURL" />
+            </ion-avatar>
+            <ion-label><h3>{{student?.name}}</h3></ion-label>
+            <!-- <a [href]="student?.linkedin">{{ student?.linkedin| linkedin}}</a> -->
           <ion-card-subtitle><a [href]="student?.linkedin">{{ student?.linkedin| linkedin}}</a></ion-card-subtitle>
+
+          </div>
+  
         </ion-card-header>
         <ion-card-content>
           <div>
 
             <div class="roles-container">
-              <div class="role-card business">business</div>
+              <!-- <div class="role-card business">business</div> -->
+              <div class="role-card" [ngClass]="student?.mainCourse">{{student?.mainCourse}}</div>
+              <div class="role-card english-level">{{student?.englishLevel}}</div>
             </div>
-            <div class="hobbies-container">
-              <div *ngFor="let hobbie of "></div>
-              <div class="hobbies-card first">Dance</div>
-              <div class="hobbies-card">basketball</div>
-              <div class="hobbies-card last">gym</div>
+            <div>
+              <p>Bio</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam est illum at corrupti recusandae impedit et saepe expedita culpa ut...</p>
             </div>
-          </div>
+            <div class="hobbies-container" style="margin: 15px 0 ">
+              <div *ngFor="let hobbie of student?.hobbies; let indexOfelement=index;">
+                <div
+                  [ngClass]="hobbiesClass(indexOfelement)"
+                  class="hobbies-card">{{hobbie}}</div>
+              </div>
 
+              <div class="">
+
+              </div>
+              <!-- <div class="hobbies-card first">Dance</div>
+              <div class="hobbies-card">basketball</div>
+              <div class="hobbies-card last">gym</div> -->
+            </div>
+
+          </div>
+          <!-- <a [href]="student?.linkedin">
+            <ion-icon style="color:#0077b5" name="logo-linkedin"></ion-icon>
+          </a> -->
 
         </ion-card-content>
       </ion-card>

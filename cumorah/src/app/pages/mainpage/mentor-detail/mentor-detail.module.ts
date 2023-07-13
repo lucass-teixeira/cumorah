@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MentorDetailPageRoutingModule } from './mentor-detail-routing.module';
 
 import { MentorDetailPage } from './mentor-detail.page';
+import { SharedComponentsModule } from 'src/app/components/shared-componente.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MentorDetailPageRoutingModule
+    MentorDetailPageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [MentorDetailPage]
 })

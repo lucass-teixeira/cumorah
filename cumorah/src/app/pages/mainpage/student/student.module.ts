@@ -19,6 +19,6 @@ import { LinkedinPipe } from 'src/app/pipes/linkedin.pipe';
     StudentPageRoutingModule,
     SharedComponentsModule,
   ],
-  declarations: [StudentPage, FilterSearchPipe],
+  declarations: [StudentPage],
 })
 export class StudentPageModule {}

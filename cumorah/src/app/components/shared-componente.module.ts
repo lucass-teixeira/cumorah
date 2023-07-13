@@ -13,7 +13,7 @@ import { FormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [CommonModule, IonicModule, FormsModule],
-  declarations: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe],
-  exports: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe],
+  declarations: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe, FilterSearchPipe],
+  exports: [ButtonsComponent, InputComponent, SearchContainerComponent, SearchCategoryButtonComponent, ListFilterPipe, FilterSearchPipe],
 })
 export class SharedComponentsModule { }

@@ -7,34 +7,40 @@
 
     &-header {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 10%;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        // height: 10%;
 
 
-        img {
-            left: 90%;
-        }
+        // img {
+        //     left: 90%;
+        // }
 
-        ion-avatar {
-            transform: translateY(50%);
-            z-index: 2;
-        }
+        // ion-avatar {
+        //     transform: translateY(50%);
+        //     z-index: 2;
+        // }
     }
 
     &-content {
         ion-card {
-            img {
-                position: absolute;
-                top: 0;
-                right: 4px;
+
+            .detail-container-header {
+                display: flex;
+                flex-direction: column;
+
+                ion-avatar {
+                    height: 64px;
+                    width: 64px;
+                }
             }
+
 
             ion-card-title,
             ion-card-subtitle {
                 display: flex;
-                justify-content: center;
+                justify-content: start;
             }
 
             ion-card-subtitle {
@@ -74,6 +80,9 @@
 }
 
 .roles-container {
+    display: flex;
+    flex-direction: row;
+
     .role-card {
         align-items: center;
         border-radius: 5px;
@@ -91,6 +100,23 @@
     .business {
         background-color: rgb(255, 235, 233);
         color: rgb(227, 117, 104);
+    }
+
+    .english {
+        background-color: #687dd2;
+        color: #172764;
+    }
+
+    .english-level {
+        background-color: #C7EFCF;
+        color: #288F3D;
+        margin-inline-start: 5px;
+
+    }
+
+    .work-focus {
+        background-color: #9799CA;
+        color: #7073cf;
     }
 }
 

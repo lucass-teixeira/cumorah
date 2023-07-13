@@ -7,10 +7,20 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <img [src]="mentor?.imgURL" />
+  <img [src]="mentor?.imgURL"/>
+
+  <div class="detail-container">
 
       <ul>
         <li *ngFor="let topic of mentor?.topics">{{topic}}</li>
       </ul>
+      <app-buttons class="ion-padding"  label="Schedule one-on-one"></app-buttons>
+
+      <div class="btn-actions-container" style="display: flex; background-color: blue; align-items: end;">
+        <!-- <ion-button class="text-align-center">Schedule one-on-one</ion-button> -->
+      </div>
+
+  </div>
+
 
 </ion-content>

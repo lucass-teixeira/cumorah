@@ -16,6 +16,9 @@ export class StudyPage implements OnInit {
   groups: (Group | string)[] = [];
   students: any[] = [];
   courses: Course[] = [];
+
+  showSearchBar = false;
+  isNotiOpen = false;
   constructor(private _apiService: StudentService, private _navController: NavController) {
   }
 

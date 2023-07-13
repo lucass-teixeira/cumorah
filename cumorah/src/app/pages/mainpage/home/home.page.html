@@ -1,16 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-avatar class="profile-avatar" style="display: none" slot="start">
-      <img [src]="user.imgURL" />
-    </ion-avatar>
     <div class="toolbar-container">
       <ion-title *ngIf="!showSearchBar">Home</ion-title>
       <ng-container *ngIf="showSearchBar">
         <app-input #inputComp (closeInput)="showSearchBar = false" (textChanged)="filterStudents($event)"
           [type]="'text'" [label]="'Search'"></app-input>
       </ng-container>
-
-
     </div>
 
     <ion-buttons slot="primary">
@@ -26,10 +21,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h5>esther</h5>
+  <div class="vertical-layout">
+    <h5>my group</h5>
+    <!-- <ion-item style="--background: transparent">
+      <ion-icon slot="start" name="people-circle-outline"></ion-icon>
+      <ion-label>My group</ion-label>
+    </ion-item> -->
+  </div>
   <swiper-container *ngIf="!_studentService.isBusy; else skeletonAvatars" [slidesPerView]="5" [loop]="false"
     [spaceBetween]="2">
-    <swiper-slide *ngFor="let studentGroup of students" (click)="goToStudent(studentGroup)">
+    <swiper-slide *ngFor="let studentGroup of estherGroup" (click)="goToStudent(studentGroup)">
       <ion-avatar><img [src]="studentGroup.imgURL" /></ion-avatar>
     </swiper-slide>
   </swiper-container>
@@ -43,7 +44,7 @@
     </swiper-container>
   </ng-template>
 
-  <ion-card>
+  <ion-card *ngIf="!_studentService.isBusy; else keepLearningContainer">
     <ion-card-header><ion-card-title>Keep learning</ion-card-title></ion-card-header>
     <ion-card-content class="keep-learning-container">
       <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
@@ -54,8 +55,25 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <ng-template #keepLearningContainer>
+    <ion-card>
+      <ion-card-header>
+        <ion-skeleton-text style="width: 180px; height: 30px;"></ion-skeleton-text>
+      </ion-card-header>
+      <ion-card-content class="keep-learning-container">
+        <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
+          <ion-skeleton-text slot="start" [animated]="true" style="width: 45px; height: 45px; border-radius: 50%">
+          </ion-skeleton-text>
+          <ion-skeleton-text style="width: 180px; height: 25px;"></ion-skeleton-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+
   <h5>mentors</h5>
-  <ng-container *ngIf="pageLoaded; else skeletonContainer">
+  <ng-container *ngIf="!_studentService.isBusy; else skeletonContainer">
     <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
       <swiper-slide *ngFor="let mentor of mentors" (click)="goToMentorDetail(mentor.id)">
         <div class="swiper-header-container">
@@ -69,12 +87,39 @@
 
   </ng-container>
 
-  <h5>house cup</h5>
+  <div class="justify-content: space-between">
+    <ion-item style="--background: transparent">
+      <ion-icon slot="start" name="medal-outline"></ion-icon>
+<!-- <h5></h5> -->
+      <ion-label>house cup</ion-label>
+    </ion-item>
+    <!-- <h5>house cup</h5>
+    <div class="medal-circle">
+    </div> -->
+  </div>
+
+
+  <ion-list>
+    <ion-item-group *ngFor="let group of groups;let indexOfelement=index;">
+      <ion-item-divider>
+        <ion-label slot="start">{{ indexOfelement + 1 }}</ion-label>
+        <ion-label>{{group}}</ion-label>
+      </ion-item-divider>
+
+      <ng-container *ngFor="let student of students | filterSearch: searchTerm">
+        <ion-item (click)="goToDetail(student.id)" *ngIf="group === student.GroupName">
+          <ion-avatar slot="start"><img [src]="student.imgURL" /></ion-avatar>
+          <ion-label> {{student.nickname}} </ion-label>
+          <ion-badge slot="end" color="warning">{{student.points}}</ion-badge>
+        </ion-item>
+      </ng-container>
+    </ion-item-group>
+  </ion-list>
 
   <ng-template #skeletonContainer>
     <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
       <swiper-slide *ngFor="let skeleton of mentors">
-        <ion-skeleton-text [animated]="true" style="width: 315px; height: 210px; border-radius: 20px">
+        <ion-skeleton-text [animated]="true" style="width: 271px; height: 185px; border-radius: 20px">
           {{skeleton}}
         </ion-skeleton-text>
       </swiper-slide>

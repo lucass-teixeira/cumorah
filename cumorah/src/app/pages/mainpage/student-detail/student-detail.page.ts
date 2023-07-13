@@ -16,16 +16,20 @@ export class StudentDetailPage implements OnInit {
   ngOnInit() {
     this.loadStudent();
   }
-  
-  loadStudent(){
+
+  loadStudent() {
     const id: number = Number(this.router.snapshot.params['id']);
-    if(id)
-    {
+    if (id) {
       this.student = this.studentService.getStudentById(id);
     }
-    else{
+    else {
       console.log('It was not possible to find user')
     }
   }
 
+
+  hobbiesClass(indexOfelement: number) {
+    
+    return (indexOfelement === 0) ? 'first' : (indexOfelement === Number(this.student?.hobbies?.length) - 1) ? 'last' : ''
+  }
 }

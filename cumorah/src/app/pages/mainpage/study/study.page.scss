@@ -48,3 +48,16 @@ svg{
 .test{
     fill: rgb(130, 128, 128)!important;
 }
+
+ion-button {
+    position: relative;
+
+    ion-badge {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        --background: red;
+        border-radius: 50%;
+        --color: white;
+    }
+}

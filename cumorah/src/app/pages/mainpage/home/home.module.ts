@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HomePage } from './home.page';
 import { SharedComponentsModule } from 'src/app/components/shared-componente.module';
+import { FilterSearchPipe } from 'src/app/pipes/filter-search.pipe';
 
 @NgModule({
   imports: [

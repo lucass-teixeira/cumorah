@@ -28,12 +28,10 @@ export class InputComponent  implements OnInit {
 
   inputChanged(event: any){
     this.textChanged.emit(event.target.value);
-    console.log(this.value)
   }
 
   closeEvent(){
     this.closeInput.emit(true);
-    console.log('passou')
   }
 
 }

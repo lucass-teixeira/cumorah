@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <div class="toolbar-container">
-      <ion-title *ngIf="!showSearchBar">Working hour</ion-title>
+      <ion-title *ngIf="!showSearchBar">Work time</ion-title>
       <ng-container *ngIf="showSearchBar">
         <app-input #inputComp (closeInput)="showSearchBar = false" (textChanged)="filterStudents($event)"
           [type]="'text'" [label]="'Search'"></app-input>
@@ -21,7 +21,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-title style="text-align: center">Total: 6:00</ion-title>
+  <ion-title style="text-align: center">Total: 8:00</ion-title>
   <ion-list>
     <ion-item *ngFor="let work of works">
       <ion-label>{{work.description}}</ion-label>

@@ -48,7 +48,7 @@ export interface Course{
     name: string,
     imgURL: string
     type: CategoryEnum
-    classes: [{title: string, isDone: boolean}]
+    classes: any[]
 }
 
 export enum MainCourse{

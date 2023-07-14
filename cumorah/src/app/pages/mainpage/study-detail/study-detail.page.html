@@ -17,11 +17,11 @@
   </div>
 
   <ion-list class="ion-padding">
-    <ion-item *ngFor="let class of classes; let indexOfelement=index;">
+    <ion-item *ngFor="let class of course?.classes; let indexOfelement=index;" [ngClass]="class.isDone ? 'course-done' : ''">
       <div slot="start">{{indexOfelement + 1 + '  '}}</div>
 
       <!-- <div style="display: flex;"> -->
-        <ion-label>{{class}}</ion-label>
+        <ion-label>{{class.title}}</ion-label>
       <!-- </div> -->
     </ion-item>
   </ion-list>

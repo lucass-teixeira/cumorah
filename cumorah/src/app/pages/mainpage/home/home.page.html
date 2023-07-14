@@ -45,7 +45,7 @@
   </ng-template>
 
   <ion-card *ngIf="!_studentService.isBusy; else keepLearningContainer">
-    <ion-card-header><ion-card-title>Keep learning</ion-card-title></ion-card-header>
+    <ion-card-header><ion-card-title>continue studying</ion-card-title></ion-card-header>
     <ion-card-content class="keep-learning-container">
       <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
         <ion-avatar slot="start">

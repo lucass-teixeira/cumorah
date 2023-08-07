@@ -28,13 +28,14 @@ export class HomePage implements OnInit {
 
   constructor(public _studentService: StudentService, private navController: NavController) { }
 
-
   groups: (Group | string)[] = [];
   students: any[] = [];
   courses: Course[] = [];
   items: Student[] = [];
   showSearchBar = false;
   isNotiOpen = false;
+
+
 
   ngOnInit() {
     this.getData();
@@ -43,6 +44,7 @@ export class HomePage implements OnInit {
     this.estherGroup = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] })).filter(x => x.GroupName === this.user.groupName);
     this.students = this.items.map(x => Object.assign({}, x, { GroupName: Group[x.idGroup] }))
     this.groups = Object.values(Group).filter(x => isNaN(Number(x)))
+
   }
 
   loadStudents() {

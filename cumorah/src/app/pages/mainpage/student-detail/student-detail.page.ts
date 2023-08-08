@@ -14,7 +14,16 @@ import {
   selector: 'app-student-detail',
   templateUrl: './student-detail.page.html',
   styleUrls: ['./student-detail.page.scss'],
-  animations: trigger()
+  animations: [    trigger('fade', [
+    transition('void => *', [ // using status here for transition
+      style({ opacity: 0 }),
+      animate(1000, style({ opacity: 1 }))
+    ]),
+    transition('* => void', [
+      animate(1000, style({ opacity: 0 }))
+    ])
+  ])
+]
 })
 export class StudentDetailPage implements OnInit {
 

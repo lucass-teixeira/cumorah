@@ -12,7 +12,7 @@
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" @fade>
 
   <div class="detail-container">
     <div class="detail-container-header">
@@ -76,12 +76,10 @@
     </div>
   </div>
 
-  <ng-container *ngIf="imgClicked">
-    <div class="opaque-background-container" (click)="imgClicked = false">
-      <ion-avatar >
+    <div *ngIf="imgClicked" class="opaque-background-container"  (click)="imgClicked = false" >
+      <ion-avatar [@fade] >
         <img  [src]="student?.imgURL" />
       </ion-avatar>
     </div>
-  </ng-container>
 
 </ion-content>

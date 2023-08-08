@@ -24,12 +24,13 @@
         <ion-card-header>
 
           <div class="detail-container-header">
-            <ion-avatar>
+            <ion-avatar (click)="imgClicked = true">
               <img [src]="student?.imgURL" />
             </ion-avatar>
             <ion-label><h3>{{student?.name}}</h3></ion-label>
             <!-- <a [href]="student?.linkedin">{{ student?.linkedin| linkedin}}</a> -->
-          <ion-card-subtitle><a [href]="student?.linkedin">{{ student?.linkedin| linkedin}}</a></ion-card-subtitle>
+          <ion-card-subtitle><a [href]="student?.linkedin">linkedin</a></ion-card-subtitle>
+          <!-- <ion-card-subtitle><a [href]="student?.linkedin">{{ student?.linkedin| linkedin}}</a></ion-card-subtitle> -->
 
           </div>
   
@@ -62,9 +63,6 @@
             </div>
 
           </div>
-          <!-- <a [href]="student?.linkedin">
-            <ion-icon style="color:#0077b5" name="logo-linkedin"></ion-icon>
-          </a> -->
 
         </ion-card-content>
       </ion-card>
@@ -77,5 +75,13 @@
       </swiper-container>
     </div>
   </div>
+
+  <ng-container *ngIf="imgClicked">
+    <div class="opaque-background-container" (click)="imgClicked = false">
+      <ion-avatar >
+        <img  [src]="student?.imgURL" />
+      </ion-avatar>
+    </div>
+  </ng-container>
 
 </ion-content>

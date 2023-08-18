@@ -1,0 +1,158 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="toolbar-container">
+      <ion-title *ngIf="!showSearchBar">Home</ion-title>
+      <ng-container *ngIf="showSearchBar">
+        <app-input #inputComp (closeInput)="showSearchBar = false" (textChanged)="filterStudents($event)"
+          [type]="'text'" [label]="'Search'"></app-input>
+      </ng-container>
+    </div>
+
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!showSearchBar" (click)="showSearchBar = !showSearchBar">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button id="open-modal" (click)="isNotiOpen = !isNotiOpen">
+        <ion-badge slot="end">4</ion-badge>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="vertical-layout">
+    <h5>my group</h5>
+    <!-- <ion-item style="--background: transparent">
+      <ion-icon slot="start" name="people-circle-outline"></ion-icon>
+      <ion-label>My group</ion-label>
+    </ion-item> -->
+  </div>
+  <swiper-container *ngIf="!_studentService.isBusy; else skeletonAvatars" [slidesPerView]="5" [loop]="false"
+    [spaceBetween]="2">
+    <swiper-slide *ngFor="let studentGroup of estherGroup" (click)="goToStudent(studentGroup)">
+      <ion-avatar><img [src]="studentGroup.imgURL" /></ion-avatar>
+    </swiper-slide>
+  </swiper-container>
+
+  <ng-template #skeletonAvatars>
+    <swiper-container [slidesPerView]="5" [loop]="false" [spaceBetween]="2">
+      <swiper-slide *ngFor="let studentGroup of students">
+        <ion-skeleton-text [animated]="true" style="width: 64px; height: 64px; border-radius: 50%">
+        </ion-skeleton-text>
+      </swiper-slide>
+    </swiper-container>
+  </ng-template>
+
+  <ion-card *ngIf="!_studentService.isBusy; else keepLearningContainer">
+    <ion-card-header><ion-card-title>continue studying</ion-card-title></ion-card-header>
+    <ion-card-content class="keep-learning-container">
+      <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
+        <ion-avatar slot="start">
+          <img [src]="course.imgURL" />
+        </ion-avatar>
+        <ion-label>{{course.name}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #keepLearningContainer>
+    <ion-card>
+      <ion-card-header>
+        <ion-skeleton-text style="width: 180px; height: 30px;"></ion-skeleton-text>
+      </ion-card-header>
+      <ion-card-content class="keep-learning-container">
+        <ion-item *ngFor="let course of courses" (click)="goToCourse(course)">
+          <ion-skeleton-text slot="start" [animated]="true" style="width: 45px; height: 45px; border-radius: 50%">
+          </ion-skeleton-text>
+          <ion-skeleton-text style="width: 180px; height: 25px;"></ion-skeleton-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+
+  <h5>mentors</h5>
+  <ng-container *ngIf="!_studentService.isBusy; else skeletonContainer">
+    <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
+      <swiper-slide *ngFor="let mentor of mentors" (click)="goToMentorDetail(mentor.id)">
+        <div class="swiper-header-container">
+          <img [src]="mentor.imgURL" />
+          <div class="swiper-header-container-title">
+            <h4>{{mentor.name}}</h4>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+  </ng-container>
+
+  <div class="justify-content: space-between">
+    <ion-item style="--background: transparent">
+      <ion-icon slot="start" name="medal-outline"></ion-icon>
+<!-- <h5></h5> -->
+      <ion-label>house cup</ion-label>
+    </ion-item>
+    <!-- <h5>house cup</h5>
+    <div class="medal-circle">
+    </div> -->
+  </div>
+
+
+  <ion-list>
+    <ion-item-group *ngFor="let group of groups;let indexOfelement=index;">
+      <ion-item-divider>
+        <ion-label slot="start">{{ indexOfelement + 1 }}</ion-label>
+        <ion-label>{{group}}</ion-label>
+      </ion-item-divider>
+
+      <ng-container *ngFor="let student of students | filterSearch: searchTerm">
+        <ion-item (click)="goToDetail(student.id)" *ngIf="group === student.GroupName">
+          <ion-avatar slot="start"><img [src]="student.imgURL" /></ion-avatar>
+          <ion-label> {{student.nickname}} </ion-label>
+          <ion-badge slot="end" color="warning">{{student.points}}</ion-badge>
+        </ion-item>
+      </ng-container>
+    </ion-item-group>
+  </ion-list>
+
+  <ng-template #skeletonContainer>
+    <swiper-container [slidesPerView]="1.2" [loop]="false" [centeredSlides]="true" [spaceBetween]="10">
+      <swiper-slide *ngFor="let skeleton of mentors">
+        <ion-skeleton-text [animated]="true" style="width: 271px; height: 185px; border-radius: 20px">
+          {{skeleton}}
+        </ion-skeleton-text>
+      </swiper-slide>
+    </swiper-container>
+  </ng-template>
+
+  <ion-modal [isOpen]="isNotiOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <!-- <ion-button (click)="cancel()">Cancel</ion-button> -->
+          </ion-buttons>
+          <ion-title>Notifications</ion-title>
+          <ion-buttons slot="end">
+            <ion-icon (click)="isNotiOpen = !isNotiOpen" name="close-outline"></ion-icon>
+
+            <!-- <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button> -->
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item *ngFor="let noti of notifications">
+            <ion-label slot="start">{{noti.title}}</ion-label>
+          </ion-item>
+          <!-- <ion-label position="stacked">Enter your name</ion-label> -->
+          <!-- <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input> -->
+        </ion-list>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <app-search-container [searchText]="searchTerm"></app-search-container>
+</ion-content>

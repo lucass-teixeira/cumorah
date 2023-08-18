@@ -1,0 +1,63 @@
+body{
+    background-color: white;
+}
+
+// .map-container{
+//     background-color: white;
+//     height: 100vh;
+// }
+.map-container{
+    height: 40vh;
+    padding: 10px;
+}
+svg{
+    height: 100%;
+    width: 100%;
+}
+.map{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    background: url('../../../../assets/cumorah_map.svg');
+    background-position: center;
+    background-size: cover;
+}
+
+.pool{
+    fill: rgb(0, 195, 255)!important;
+}
+
+.gym{
+    fill: rgb(255, 0, 0)!important;
+}
+.grass, trampolim {
+    fill: rgb(167, 201, 87)!important;
+}
+.path{
+    fill: rgb(130, 128, 128)!important;
+}
+.classroom, .apartment, .gym , .kitchen{
+    fill: #bc4749!important;
+}
+
+.gate{
+    fill: #310304!important;
+
+}
+.test{
+    fill: rgb(130, 128, 128)!important;
+}
+
+ion-button {
+    position: relative;
+
+    ion-badge {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        --background: red;
+        border-radius: 50%;
+        --color: white;
+    }
+}

@@ -1,0 +1,91 @@
+<div class="search-container" [class.hide]="!hasCharacter">
+  <div class="search-container-btns">
+    <app-search-category-button *ngFor="let t of topics" (clickEvent)="filterList($event)" [label]="t"
+      [style]="'margin: 8px'"></app-search-category-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let search of searchResult" (click)="goToTopicSearched(search)">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+      <ion-avatar slot="start"><img [src]="search.imgURL" /></ion-avatar>
+      {{search.name}}
+    </ion-item>
+  </ion-list>
+  <!-- *ngIf="filteredCourses.length !== 0 || filteredMentors.length !== 0 || filteredStudents.length !== 0; else notFoundTemplate" -->
+  <ng-container *ngIf="false">
+    <ion-card>
+      <ion-list>
+        <ion-list-header>
+          Education
+        </ion-list-header>
+        <ion-item *ngFor="let course of filteredCourses">
+          <ion-avatar slot="start">
+            <img [src]="course.imgURL" /></ion-avatar>
+          <ion-label>{{course.name}}</ion-label>
+        </ion-item>
+        <ng-container *ngIf="filteredCourses.length === 0">
+          <div class="no-result-container">
+            <p>No results found</p>
+          </div>
+        </ng-container>
+        <button class="show-all-btn">Show all courses</button>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-list>
+        <ion-list-header>Students</ion-list-header>
+        <ng-container *ngFor="let student of filteredStudents">
+          <ion-item (click)="goToDetail(student.id)">
+            <ion-avatar slot="start"><img [src]="student.imgURL" /></ion-avatar>
+            <ion-label> {{student.nickname}} </ion-label>
+            <ion-badge slot="end" color="warning">{{student.points}}</ion-badge>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="filteredStudents.length === 0">
+          <div class="no-result-container">
+            <p>No results found</p>
+          </div>
+        </ng-container>
+        <button class="show-all-btn">Show all students</button>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-list>
+        <ion-list-header>Mentors</ion-list-header>
+        <ng-container *ngFor="let m of filteredMentors">
+          <ion-item (click)="goToDetail(m.id)">
+            <ion-avatar slot="start"><img [src]="m.imgURL" /></ion-avatar>
+            <ion-label> {{m.name}} </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="filteredMentors.length === 0">
+          <div class="no-result-container">
+            <p>No results found</p>
+          </div>
+        </ng-container>
+        <button class="show-all-btn">Show all mentors</button>
+      </ion-list>
+    </ion-card>
+
+    <ng-container *ngIf="categoryEnum.toString() === 'students'">
+      <ion-list>
+        <ion-item>Teste</ion-item>
+      </ion-list>
+      students container
+    </ng-container>
+
+  </ng-container>
+
+  <ng-template #notFoundTemplate>
+    <div class="no-result-container">
+      <h2>No results found</h2>
+    </div>
+  </ng-template>
+
+</div>
+
+<!-- <ion-modal [isOpen]="true">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quam eaque facilis dignissimos omnis. Harum hic dolor repellat? Ex libero mollitia maxime illum qui pariatur quae adipisci optio rem omnis?
+</ion-modal> -->

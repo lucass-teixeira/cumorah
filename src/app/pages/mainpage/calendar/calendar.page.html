@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="toolbar-container">
+      <ion-title *ngIf="!showSearchBar">Calendar</ion-title>
+      <ng-container *ngIf="showSearchBar">
+        <app-input #inputComp (closeInput)="showSearchBar = false" (textChanged)="filterStudents($event)"
+          [type]="'text'" [label]="'Search'"></app-input>
+      </ng-container>
+    </div>
+
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!showSearchBar" (click)="showSearchBar = !showSearchBar">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button id="open-modal" (click)="isNotiOpen = !isNotiOpen">
+        <ion-badge slot="end">4</ion-badge>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="calendar-cotainer">
+    <div>
+      <h2>Not implemented yet</h2>
+      <ion-icon name="calendar-outline" style="font-size: 4rem"></ion-icon>
+    </div>
+
+  </div>
+</ion-content>

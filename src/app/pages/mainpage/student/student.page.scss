@@ -1,0 +1,21 @@
+ion-button {
+    position: relative;
+
+    ion-badge {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        --background: red;
+        --color: white;
+        border-radius: 50%;
+    }
+}
+
+.toolbar-container{
+    padding: .4rem .4rem;
+}
+
+.profile-avatar{
+    height: 2.5rem;
+    width: 2.5rem;
+}

@@ -1,0 +1,39 @@
+.toolbar-container{
+    padding: .4rem .4rem;
+}
+
+.profile-avatar{
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+ion-button {
+    position: relative;
+
+    ion-badge {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        --background: red;
+        border-radius: 50%;
+        --color: white;
+    }
+}
+
+.calendar-cotainer{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: center;
+}
+
+.toolbar-container{
+    padding: .4rem .4rem;
+}
+.profile-avatar{
+    height: 2.5rem;
+    width: 2.5rem;
+}

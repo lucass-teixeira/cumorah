@@ -26,10 +26,8 @@ export class AppComponent {
     if(Capacitor.getPlatform() === 'web' && this.width > 768){
       html?.classList.add('center')
     }
-    else{
+    else
       html?.classList.remove('center')
-      
-    }
   }
 }
  

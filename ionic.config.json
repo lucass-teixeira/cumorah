@@ -1,7 +1,0 @@
-{
-  "name": "Cumorah",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

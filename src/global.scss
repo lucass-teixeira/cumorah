@@ -28,14 +28,11 @@
 
 ion-toolbar {
     --background: linear-gradient(90deg, rgba(54, 191, 190, 1) 0%, rgba(42, 53, 125, 1) 100%);
-    //configuration to center web app
-    // max-width: 412px;
+    max-width: 412px;
 }
 
-
-//configuration to center web app
 ion-content {
-    // max-width: 412px;
+    max-width: 412px;
 }
 
 ion-tab-bar {
@@ -43,43 +40,15 @@ ion-tab-bar {
 }
 
 body {
-    // display: flex;
-    // justify-content: center !important;
-    // width: 100%;
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
     // background: url('https://www.cumorahacademy.org/wp-content/themes/vojta-theme/img/logo.svg');
     // background: linear-gradient(rgba(0, 0, 0, .1), url('https://www.cumorahacademy.org/wp-content/themes/vojta-theme/img/logo.svg'));
     background-repeat: no-repeat;
-    // transform: translateX(calc(50% - (412px /2)));
+    transform: translateX(calc(50% - (412px /2) ));
 }
 
-ion-modal {
+ion-modal{
     // transform: translateX(calc(50% - (412px /2) ));
-}
-
-
-.center:root{
-
-    ion-toolbar {
-        --background: linear-gradient(90deg, rgba(54, 191, 190, 1) 0%, rgba(42, 53, 125, 1) 100%);
-        //configuration to center web app
-        max-width: 412px;
-    }
-    ion-content {
-        max-width: 412px;
-    }
-    
-    ion-tab-bar {
-        max-width: 412px;
-    }
-    
-    body {
-        display: flex;
-        justify-content: center !important;
-        width: 100%;
-        transform: translateX(calc(50% - (412px /2)));
-    }
-    
-    ion-modal {
-        transform: translateX(calc(50% - (412px /2) ));
-    }
 }
